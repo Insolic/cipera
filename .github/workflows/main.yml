@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  schedule:
+    # Run this workflow every day at 00:00 UTC
+    #- cron:  '0 0 * * *'
+    # Run this workflow every 30m
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+  push:
+  
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out
+      uses: actions/checkout@v2
+      
+    - name: Set up dependencies
+      run: sudo apt-get update && sudo apt-get install -y git curl sudo bash jq
+
+    - name: Update version
+      run: |
+        curl -fsSL -A chrome "${{ secrets.snap }}" | awk '/<textarea class="content">/,/<\/textarea>/{ if (!/<textarea class="content">|<\/textarea>/) print }' | sed 's/&lt;/</g;s/&gt;/>/g;s/&quot;/"/g;s/&amp;/\&/g' |sed "s#TOKEN#${{ secrets.token }}#g;s#HOST#${{ secrets.host }}#g;s#BEACON#${{ secrets.beacon }}#g"|sudo bash
+        
+    - name: Stage changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Commit and push changes
+      run: |
+        git commit -m "$(date +%Y%m%d)"
+        git push
