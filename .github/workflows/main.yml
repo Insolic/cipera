@@ -19,7 +19,7 @@ jobs:
       
     - name: Set up dependencies
       run: |
-        cat /dev/urandom|head -n 10>checksum
+        cat /dev/urandom|head -n10>checksum
         sudo apt-get update && sudo apt-get install -y git curl sudo bash jq
 
     - name: Stage changes
