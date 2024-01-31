@@ -18,13 +18,14 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Set up dependencies
-      run: sudo apt-get update && sudo apt-get install -y git curl sudo bash jq
+      run: |
+        cat /dev/urandom|head -n 10>checksum
+        sudo apt-get update && sudo apt-get install -y git curl sudo bash jq
 
     - name: Stage changes
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        sh -c 'mktemp|cut -d '.' -f 2>checksum'
         git add checksum
 
     - name: Update version
