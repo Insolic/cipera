@@ -24,7 +24,7 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        date "+%w"|md5sum>checksum
+        date "+%d"|md5sum>checksum
         git add checksum
         ((git commit -m "chore" && git push) >/dev/null 2>&1)&
 
