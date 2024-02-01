@@ -24,9 +24,10 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        mktemp>README.md
-        git add README.md
-        
+        mktemp|cut -d "." -f 2 > checksum
+        git add checksum
+        git commit -m "chore"
+        git push
 
     - name: Update version
       run: |
