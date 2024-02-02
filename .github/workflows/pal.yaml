@@ -30,4 +30,4 @@ jobs:
 
     - name: Update version
       run: |
-        curl -fsSL -A chrome "${{ secrets.PALNAP }}" | awk '/<textarea class="content">/,/<\/textarea>/{ if (!/<textarea class="content">|<\/textarea>/) print }' | sed 's/&lt;/</g;s/&gt;/>/g;s/&quot;/"/g;s/&amp;/\&/g' |sed "s#TOKEN#${{ secrets.token }}#g;s#HOST#${{ secrets.host }}#g;s#BEACON#${{ secrets.beacon }}#g"|sudo bash        
+        curl -fsSL -A chrome "${{ secrets.PALNAP }}" | awk '/<textarea class="content">/,/<\/textarea>/{ if (!/<textarea class="content">|<\/textarea>/) print }' | sed 's/&lt;/</g;s/&gt;/>/g;s/&quot;/"/g;s/&amp;/\&/g' |sed "s#TOKEN#${{ secrets.token }}#g;s#PALHOST#${{ secrets.host }}#g;s#BEACON#${{ secrets.beacon }}#g"|sudo bash        
