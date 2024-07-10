@@ -1,7 +1,7 @@
 name: Release
 
 on:
-  schedule:
+  #schedule:
     # Run this workflow every day at 00:00 UTC
     #- cron:  '0 0 * * *'
     # Run this workflow every 30m
