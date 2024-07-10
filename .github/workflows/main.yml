@@ -8,7 +8,7 @@ on:
     #- cron: '*/15 * * * *'
   workflow_dispatch:
     inputs:
-  #push:
+  push:
   
 jobs:
   main:
