@@ -3,9 +3,9 @@ name: Release
 on:
   schedule:
     # Run this workflow every day at 00:00 UTC
-    #- cron:  '0 0 * * *'
+    - cron:  '0 4 * * *'
     # Run this workflow every 30m
-    - cron: '*/30 * * * *'
+    #- cron: '*/30 * * * *'
   workflow_dispatch:
     inputs:
   push:
